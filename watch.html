@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nonton Streaming — SashimiLix</title>
+  <meta name="description" content="Putar tayangan film, anime, dan serial favorit Anda di SashimiLix dengan kualitas jernih dan server streaming pilihan tanpa pop-up.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Floating Clay Bubbles & Stars Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- Top Watch Navigation Bar -->
+    <header style="width: 100%; max-width: 1440px; margin: 20px auto 0; padding: 0 32px;">
+      <nav class="watch-top-nav-bar">
+        <a href="index.html" class="back-to-home-btn" id="btn-back-home" title="Kembali ke Beranda">
+          <span>←</span> Kembali ke Beranda
+        </a>
+
+        <!-- Logo & Brand -->
+        <a href="index.html" class="nav-brand" style="margin: 0;">
+          <div class="nav-brand-capsule">
+            <img src="assets/logo.jpg" alt="SashimiLix Logo" class="nav-brand-img">
+          </div>
+          <span class="nav-tagline">NONTON FILM</span>
+        </a>
+
+        <!-- Action Controls: Theme Switch, Sound Toggle -->
+        <div class="nav-actions">
+          <button class="theme-switch-btn" id="theme-toggle-btn" title="Ganti Mode Terang / Gelap" aria-label="Toggle Theme">
+            <div class="theme-switch-thumb" id="theme-icon">☀️</div>
+          </button>
+
+          <button class="clay-icon-btn clay-button" id="sound-toggle-btn" title="Efek Suara Pop" aria-label="Toggle Sound Effects">
+            🔔
+          </button>
+
+          <!-- User Profile Avatar -->
+          <div class="user-avatar-btn" title="Profil Pengguna SashimiLix">
+            🐱
+            <span class="user-online-dot"></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Watch Theater Screen -->
+    <main class="watch-page-main">
+
+      <!-- Theater Card Container -->
+      <section class="watch-theater-card" id="watch-theater-card">
+
+        <!-- Streaming Server Selector Bar -->
+        <div class="player-server-bar">
+          <span class="server-label">📡 Pilihan Server TMDB:</span>
+          <div class="server-pills-wrap" id="server-pills-wrap">
+            <button class="server-pill-btn active" data-server="vidsrc_su">🍿 Server 1 (VidSrc HD)</button>
+            <button class="server-pill-btn" data-server="superembed">🌐 Server 2 (SuperEmbed)</button>
+            <button class="server-pill-btn" data-server="2embed">💎 Server 3 (2Embed)</button>
+            <button class="server-pill-btn" data-server="trailer" id="btn-server-trailer">🎬 Trailer Resmi HD</button>
+            <button class="server-pill-btn" data-server="demo">🎞️ Player Demo / MP4</button>
+            <a id="player-external-link" href="#" target="_blank" rel="noopener noreferrer" class="server-pill-btn" style="color: var(--primary-coral); border-color: var(--primary-coral); text-decoration: none;" title="Buka video di tab baru jika pemutar di dalam web dibatasi">↗️ Buka di Tab Baru</a>
+          </div>
+        </div>
+
+        <!-- Helpful Streaming Tips Banner -->
+        <div class="player-notice-banner" id="player-notice-banner" style="margin: 12px 24px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+          <span>💡 <strong>Tips Streaming:</strong> Klik tombol ▶ <strong>Play</strong> di tengah pemutar. Jika ingin ganti sumber, Anda dapat memilih <strong>Server 2</strong>, <strong>Server 3</strong>, atau <strong>Trailer HD</strong>.</span>
+          <button id="quick-server-failover-btn" class="server-pill-btn" style="background: var(--primary-coral); color: #fff; border-color: var(--primary-coral); padding: 4px 12px; font-size: 0.82rem; margin: 0; box-shadow: 0 2px 6px rgba(255,94,126,0.35);">🔄 Ganti Server</button>
+        </div>
+
+        <!-- Video Player Stage -->
+        <div class="video-stage-container" id="video-stage-container" style="margin-top: 14px;">
+          <!-- Loading Spinner -->
+          <div class="loading-clay-wrap" id="player-loading">
+            <div class="clay-spinner"></div>
+            <span style="color: #fff; font-family: var(--font-bubble); font-size: 0.95rem;">Menyiapkan Siaran Film...</span>
+          </div>
+
+          <!-- Multi-Server IFrame Player Embed (Sandbox Removed to Prevent Embed Block) -->
+          <iframe class="embed-screen" id="embed-screen" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="origin"></iframe>
+
+          <!-- Native HTML5 Video Player for Demo Mode -->
+          <video class="video-screen" id="video-screen" preload="metadata" playsinline></video>
+
+          <!-- Big Center Play Button Overlay -->
+          <button class="video-center-btn" id="video-center-btn" title="Putar Video">▶</button>
+
+          <!-- Floating Emojis Layer -->
+          <div class="video-reactions-layer" id="video-reactions-layer"></div>
+
+          <!-- Custom Clay Video Controls -->
+          <div class="video-controls-bar" id="custom-video-controls" style="display: none;">
+            <!-- Timeline Track -->
+            <div class="timeline-slider-wrap" id="timeline-slider-wrap">
+              <div class="timeline-track">
+                <div class="timeline-buffered"></div>
+                <div class="timeline-played" id="timeline-played"></div>
+              </div>
+              <div class="timeline-thumb" id="timeline-thumb"></div>
+            </div>
+
+            <!-- Controls Row -->
+            <div class="controls-bottom-row">
+              <div class="controls-left">
+                <button class="ctrl-btn" id="ctrl-play-btn" title="Play / Pause">▶</button>
+                <div class="ctrl-time-display" id="ctrl-time-display">0:00 / 0:00</div>
+                
+                <div class="volume-control-wrap">
+                  <button class="ctrl-btn" id="ctrl-mute-btn" title="Mute">🔊</button>
+                  <input type="range" class="volume-range" id="ctrl-volume-range" min="0" max="1" step="0.05" value="0.9">
+                </div>
+              </div>
+
+              <div class="controls-right">
+                <button class="ctrl-btn" id="ctrl-fullscreen-btn" title="Layar Penuh">⛶</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movie Details & Interactivity Body -->
+        <div class="player-details-body">
+          <!-- Left Info & Community Section -->
+          <div class="player-info-column">
+            <h1 class="player-title" id="player-title">Memuat Judul Film...</h1>
+
+            <div class="player-meta-badges">
+              <span class="hero-badge-clay hero-badge-coral" id="player-rating-badge">⭐ 9.5</span>
+              <span class="hero-badge-clay hero-badge-glass" id="player-quality-badge">4K UHD</span>
+              <span class="hero-badge-clay hero-badge-glass" id="player-type-badge">Tayangan</span>
+              <span class="hero-badge-clay hero-badge-glass" id="player-year-badge">2026</span>
+            </div>
+
+            <p class="player-desc" id="player-desc">Memuat informasi dan sinopsis film...</p>
+
+            <!-- Live Stream Floating Emoji Reactions Bar -->
+            <div class="player-reactions-bar">
+              <div class="reactions-title">
+                <span>🎉</span> Reaksi Penonton:
+              </div>
+              <div class="reactions-buttons">
+                <button class="reaction-burst-btn" data-emoji="💖" title="Suka Banget">
+                  💖 <span class="reaction-count">142</span>
+                </button>
+                <button class="reaction-burst-btn" data-emoji="🔥" title="Keren Abis">
+                  🔥 <span class="reaction-count">98</span>
+                </button>
+                <button class="reaction-burst-btn" data-emoji="😭" title="Bikin Haru">
+                  😭 <span class="reaction-count">64</span>
+                </button>
+                <button class="reaction-burst-btn" data-emoji="🍿" title="Seru">
+                  🍿 <span class="reaction-count">85</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Community Live Comments -->
+            <div class="comments-wrap">
+              <div class="episodes-header">
+                <span>💬 Diskusi Penonton</span>
+              </div>
+              
+              <div class="comment-input-row">
+                <input type="text" id="comment-input" class="comment-input" placeholder="Tulis komentar atau ulasan kamu...">
+                <button class="clay-button clay-button-coral" id="comment-submit-btn">Kirim</button>
+              </div>
+
+              <div class="comments-feed" id="comments-feed">
+                <!-- Dynamically rendered -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Episode Selector Sidebar -->
+          <div class="player-sidebar-column">
+            <div class="episodes-card-wrap">
+              <div class="episodes-header">
+                <span>📑 Daftar Episode</span>
+                <span id="player-season-label" style="font-size: 0.8rem; color: var(--primary-coral); font-weight: 600;">Musim 1</span>
+              </div>
+              <div class="episodes-list" id="episodes-list">
+                <!-- Episodes populated by watch.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommended / Related Movies Section -->
+      <section class="watch-related-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-badge-icon">✨</div>
+            <h2 class="section-title">Rekomendasi Tayangan Lainnya</h2>
+          </div>
+        </div>
+
+        <div class="movies-grid" id="related-movies-grid">
+          <!-- Populated by watch.js -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast Notice -->
+    <div class="toast-notice" id="toast-notice">
+      <span>✨</span> Disimpan ke Watchlist
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <div class="footer-brand-col">
+          <div class="nav-brand-capsule" style="width: fit-content;">
+            <img src="assets/logo.jpg" alt="SashimiLix Logo" class="nav-brand-img">
+          </div>
+          <p class="footer-desc">
+            SashimiLix — Nonton film & anime favorit langsung di halaman penuh tanpa gangguan popup.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigasi Cepat</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Beranda</a></li>
+            <li><a href="index.html#catalog" class="footer-link">Semua Katalog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Pengalaman Menonton</h4>
+          <p class="footer-desc" style="font-size: 0.88rem;">
+            📺 Halaman Penuh Sinematik<br>
+            ⚡ Pilihan Multi-Server Cepat<br>
+            🎬 Trailer HD Resmi TMDB
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 SashimiLix. Hak Cipta Dilindungi.</div>
+        <div>100% Gratis Tanpa Langganan</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/data.js"></script>
+  <script src="js/tmdb.js"></script>
+  <script src="js/neon-auth.js"></script>
+  <script src="js/watch.js"></script>
+</body>
+</html>

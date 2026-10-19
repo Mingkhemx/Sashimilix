@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SashimiLix — Platform Streaming Gratis Terfavorit</title>
+  <meta name="description" content="Nonton streaming anime, film box office, dan serial drama terlengkap dengan kualitas 4K gratis tanpa langganan. Didesain dengan estetika claymorphism modern dan animasi interaktif.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Floating Clay Bubbles & Stars Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- ===================================================================
+         NAVIGATION BAR (CLAY GLASSMORPHIC)
+         =================================================================== -->
+    <header>
+      <nav class="navbar" id="navbar">
+        <!-- Logo & Brand -->
+        <a href="#home" class="nav-brand" id="brand-link">
+          <div class="nav-brand-capsule">
+            <img src="assets/logo.jpg" alt="SashimiLix Logo" class="nav-brand-img">
+          </div>
+          <span class="nav-tagline">STREAMING GRATIS</span>
+        </a>
+
+        <!-- Desktop Menu Links -->
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#home" class="nav-link active" data-filter="all">🏠 Beranda</a></li>
+          <li class="nav-item"><a href="#catalog" class="nav-link" data-filter="anime">🌸 Anime</a></li>
+          <li class="nav-item"><a href="#catalog" class="nav-link" data-filter="movie">🎬 Film</a></li>
+          <li class="nav-item"><a href="#catalog" class="nav-link" data-filter="series">📺 Series</a></li>
+        </ul>
+
+        <!-- Live Search Bar -->
+        <div class="nav-search-wrap">
+          <span class="nav-search-icon">🔍</span>
+          <input type="text" id="nav-search" class="nav-search-input" placeholder="Cari film, anime, genre... (tekan '/')" autocomplete="off">
+          <button id="search-clear" class="nav-search-clear" title="Bersihkan">✕</button>
+        </div>
+
+        <!-- Action Controls: Theme Switch, Sound Toggle, User Avatar -->
+        <div class="nav-actions">
+          <!-- Light / Dark Mode Clay Switch -->
+          <button class="theme-switch-btn" id="theme-toggle-btn" title="Ganti Mode Terang / Gelap" aria-label="Toggle Theme">
+            <div class="theme-switch-thumb" id="theme-icon">☀️</div>
+          </button>
+
+          <!-- Audio Pop FX Toggle -->
+          <button class="clay-icon-btn clay-button" id="sound-toggle-btn" title="Efek Suara Pop" aria-label="Toggle Sound Effects">
+            🔔
+          </button>
+
+          <!-- User Profile Avatar -->
+          <div class="user-avatar-btn" title="Profil Pengguna SashimiLix">
+            🐱
+            <span class="user-online-dot"></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===================================================================
+         HERO FEATURED CAROUSEL SECTION
+         =================================================================== -->
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-clay-wrapper" id="hero-clay-wrapper">
+          <img src="" alt="Hero Backdrop" class="hero-backdrop-img" id="hero-backdrop-img">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <div class="hero-badges-row">
+              <span class="hero-badge-clay hero-badge-coral" id="hero-badge-type">EXCLUSIF</span>
+              <span class="hero-badge-clay hero-badge-gold">★ <span id="hero-rating-val">9.9</span></span>
+              <span class="hero-badge-clay hero-badge-glass" id="hero-badge-quality">4K UHD</span>
+            </div>
+
+            <h1 class="hero-title" id="hero-title">Sashimi no Kiseki: Galaxy Odyssey</h1>
+
+            <div class="hero-meta">
+              <span>📅 <span id="hero-year-val">2026</span></span>
+              <span>•</span>
+              <span>⏱️ <span id="hero-duration-val">24 Ep (Tamat)</span></span>
+              <span>•</span>
+              <span>Sub & Dub Indo</span>
+            </div>
+
+            <p class="hero-synopsis" id="hero-synopsis">
+              Di galaksi Neon Nebula, seorang gadis kucing penjaga kristal play-button bernama Sashimi memulai ekspedisi melintasi rasi bintang demi menemukan resonansi melodi kosmik yang hilang.
+            </p>
+
+            <div class="hero-actions">
+              <button class="clay-button clay-button-coral hero-cta-play" id="hero-play-btn">
+                <span style="font-size: 1.25rem;">▶</span> Tonton Sekarang
+              </button>
+              <button class="clay-button hero-cta-watchlist" id="hero-watchlist-btn">
+                <span>➕</span> Watchlist
+              </button>
+            </div>
+          </div>
+
+          <!-- Carousel Dots -->
+          <div class="hero-indicators" id="hero-indicators"></div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           CATEGORIES FILTER PILLS (CLAY TABS)
+           =================================================================== -->
+      <section class="categories-section">
+        <div class="filter-pills-row">
+          <button class="filter-pill active" data-filter="all">✨ Semua Tayangan</button>
+          <button class="filter-pill" data-filter="trending">🔥 Trending Populer</button>
+          <button class="filter-pill" data-filter="anime">🌸 Anime Terkini</button>
+          <button class="filter-pill" data-filter="movie">🍿 Film Box Office</button>
+          <button class="filter-pill" data-filter="series">💎 K-Drama & Series</button>
+          <button class="filter-pill" data-filter="watchlist">❤️ Watchlist Saya</button>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           MAIN CATALOG SECTION (3D CLAY CARDS GRID)
+           =================================================================== -->
+      <section class="section-container" id="catalog">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-badge-icon">🎬</div>
+            <h2 class="section-title" id="catalog-title">Eksplorasi Semua Tayangan</h2>
+            <span class="section-count" id="catalog-count">12 Item</span>
+          </div>
+        </div>
+
+        <div class="movies-grid" id="movies-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </section>
+    </main>
+
+
+    <!-- ===================================================================
+         TOAST NOTICE
+         =================================================================== -->
+    <div class="toast-notice" id="toast-notice">
+      <span>✨</span> Disimpan ke Watchlist
+    </div>
+
+    <!-- ===================================================================
+         FOOTER (CLAY STYLING)
+         =================================================================== -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <div class="footer-brand-col">
+          <div class="nav-brand-capsule" style="width: fit-content;">
+            <img src="assets/logo.jpg" alt="SashimiLix Logo" class="nav-brand-img">
+          </div>
+          <p class="footer-desc">
+            SashimiLix adalah platform streaming gratis dengan pengalaman visual 3D Claymorphism termutakhir, menghadirkan koleksi film, anime, dan serial favorit tanpa jeda iklan mengganggu.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigasi</h4>
+          <ul class="footer-links-list">
+            <li><a href="#home" class="footer-link">Beranda</a></li>
+            <li><a href="#catalog" class="footer-link">Anime Populer</a></li>
+            <li><a href="#catalog" class="footer-link">Film Box Office</a></li>
+            <li><a href="#catalog" class="footer-link">K-Drama Terkini</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Komunitas</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Discord SashimiLix</a></li>
+            <li><a href="#" class="footer-link">Forum Diskusi</a></li>
+            <li><a href="#" class="footer-link">Request Judul</a></li>
+            <li><a href="#" class="footer-link">Lapor Kendala</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Fitur Unggulan</h4>
+          <p class="footer-desc" style="font-size: 0.88rem;">
+            🎨 Tema Claymorphism 3D<br>
+            🌓 Mode Terang & Gelap Instan<br>
+            🔊 Efek Suara Pop Interaktif<br>
+            ✨ Reaksi Emoji Real-Time
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 SashimiLix. Hak Cipta Dilindungi. Dibuat dengan cinta untuk para pecinta anime dan film.</div>
+        <div>Desain Harmonisasi Logo • 100% Bebas Biaya</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/data.js"></script>
+  <script src="js/tmdb.js"></script>
+  <script src="js/neon-auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

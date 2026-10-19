@@ -1,0 +1,24 @@
+{
+  "name": "sashimilix",
+  "version": "1.0.0",
+  "description": "SashimiLix Streaming Platform powered by Neon",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsc && node dist/server.js",
+    "test": "node dist/scripts/test-services.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1152.0",
+    "@aws-sdk/s3-request-presigner": "^3.1152.0",
+    "@neon/config": "^1.9.2",
+    "@neon/env": "^1.6.3",
+    "@neondatabase/serverless": "^1.2.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "typescript": "^7.0.2"
+  }
+}

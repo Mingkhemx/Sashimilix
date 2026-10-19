@@ -1,0 +1,328 @@
+/**
+ * SashimiLix Movie & Anime Streaming Platform Data
+ * Color Palette Harmonized with SashimiLix Logo:
+ * - Coral/Salmon Pink: #FF5E7E / #FA5274
+ * - Periwinkle/Lilac: #7C5CFC / #9D84FC
+ * - Bubblegum Sweet Pink: #FFA6C9
+ * - Star Gold: #FFD166
+ */
+
+const MOVIES_DATA = [
+  {
+    id: "sashimi-galaxy",
+    title: "Sashimi no Kiseki: Galaxy Odyssey",
+    originalTitle: "刺身の奇跡：ギャラクシー・オデッセイ",
+    type: "anime",
+    mediaType: "anime",
+    isOriginal: true,
+    badge: "EXCLUSIF",
+    isTrending: true,
+    rating: 9.9,
+    year: 2026,
+    duration: "24 Ep (Tamat)",
+    ageRating: "13+",
+    quality: "4K UHD",
+    genres: ["Petualangan", "Fantasi", "Sci-Fi", "Komedi"],
+    banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Di galaksi Neon Nebula, seorang gadis kucing penjaga kristal play-button bernama Sashimi memulai ekspedisi melintasi rasi bintang demi menemukan resonansi melodi kosmik yang hilang. Ditemani kru ajaib, ia harus melawan armada kegelapan yang ingin membungkam seluruh musik di alam semesta.",
+    cast: ["Akari Kito", "Natsuki Hanae", "Kana Hanazawa", "Mamoru Miyano"],
+    studio: "SashimiLix Originals x Ufotable",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    episodes: [
+      { ep: 1, title: "Panggilan dari Nebula Bintang", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=400&q=80" },
+      { ep: 2, title: "Kristal Play Merah Muda", duration: "23m", thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" },
+      { ep: 3, title: "Melodi di Ujung Angkasa", duration: "25m", thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" },
+      { ep: 4, title: "Pertarungan di Langit Sakura", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" },
+      { ep: 5, title: "Harmoni Tanpa Batas", duration: "26m", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "frieren-beyond",
+    tmdbId: 209867,
+    mediaType: "tv",
+    title: "Frieren: Beyond Journey's End",
+    originalTitle: "葬送のフリーレン",
+    type: "anime",
+    badge: "POPULER",
+    isTrending: true,
+    rating: 9.8,
+    year: 2025,
+    duration: "28 Ep",
+    ageRating: "13+",
+    quality: "1080p FHD",
+    genres: ["Fantasi", "Petualangan", "Drama"],
+    banner: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Setelah mengalahkan Raja Iblis bersama kelompok pahlawannya, Frieren sang penyihir elf berumur ribuan tahun menyadari betapa singkatnya waktu manusia. Kini ia memulai perjalanan baru untuk memahami makna hati dan ikatan persahabatan sejati.",
+    cast: ["Atsumi Tanezaki", "Nobuhiko Okamoto", "Hiroki Touchi"],
+    studio: "Madhouse",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    episodes: [
+      { ep: 1, title: "Akhir dari Sebuah Perjalanan", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" },
+      { ep: 2, title: "Bukan Berarti Itu Sia-sia", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" },
+      { ep: 3, title: "Sihir Penghapus Noda", duration: "23m", thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "cyber-tokyo-2088",
+    title: "Cyber Neon: Neo Shinjuku",
+    originalTitle: "ネオ新宿：サイバーネオン",
+    type: "anime",
+    mediaType: "anime",
+    isOriginal: true,
+    badge: "HOT",
+    isTrending: true,
+    rating: 9.6,
+    year: 2026,
+    duration: "12 Ep",
+    ageRating: "17+",
+    quality: "4K HDR",
+    genres: ["Cyberpunk", "Aksi", "Sci-Fi", "Thriller"],
+    banner: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Di bawah guyuran hujan neon kota Neo-Shinjuku tahun 2088, seorang hacker bawah tanah dan mantan agen cybernetik bersatu membongkar sindikat korporasi AI yang memanipulasi memori seluruh warga kota.",
+    cast: ["Kenjiro Tsuda", "Maaya Sakamoto", "Takehito Koyasu"],
+    studio: "Trigger Studios",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    episodes: [
+      { ep: 1, title: "Protokol Glitch Hati", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" },
+      { ep: 2, title: "Sinyal di Bawah Hujan", duration: "25m", thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "demon-slayer-infinity",
+    tmdbId: 85937,
+    mediaType: "tv",
+    title: "Demon Slayer: Kimetsu no Yaiba",
+    originalTitle: "鬼滅の刃：無限城編",
+    type: "anime",
+    badge: "TRENDING #1",
+    isTrending: true,
+    rating: 9.9,
+    year: 2026,
+    duration: "Series HD",
+    ageRating: "17+",
+    quality: "4K UHD",
+    genres: ["Aksi", "Fantasi", "Shounen"],
+    banner: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Pertempuran pamungkas Korps Pembasmi Iblis dimulai! Tanjiro, Nezuko, dan seluruh Pilar ditarik masuk ke dalam labirin dimensi tanpa batas milik Muzan Kibutsuji. Takdir umat manusia dipertaruhkan dalam kobaran api dan tebasan pedang terakhir.",
+    cast: ["Natsuki Hanae", "Akari Kito", "Hiro Shimono", "Yoshitsugu Matsuoka"],
+    studio: "Ufotable",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    episodes: [
+      { ep: 1, title: "Gerbang Dimensi Terbuka", duration: "138m", thumbnail: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "interstellar-chronicles",
+    tmdbId: 157336,
+    mediaType: "movie",
+    title: "Interstellar",
+    originalTitle: "Interstellar",
+    type: "movie",
+    badge: "BOX OFFICE",
+    isTrending: false,
+    rating: 9.4,
+    year: 2025,
+    duration: "2j 45m",
+    ageRating: "13+",
+    quality: "IMAX 4K",
+    genres: ["Sci-Fi", "Petualangan", "Misteri"],
+    banner: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Ketika gravitasi bumi mengalami anomali misterius, ekspedisi antar-bintang diluncurkan menuju lubang cacing di tepi cincin Saturnus untuk menemukan rumah baru bagi peradaban masa depan.",
+    cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+    studio: "Cosmo Studios",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    episodes: [
+      { ep: 1, title: "Full Movie", duration: "165m", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "suzume-door",
+    tmdbId: 916224,
+    mediaType: "movie",
+    title: "Suzume no Tojimari",
+    originalTitle: "すずめの戸締まり",
+    type: "anime",
+    badge: "MASTERPIECE",
+    isTrending: true,
+    rating: 9.5,
+    year: 2024,
+    duration: "2j 2m",
+    ageRating: "13+",
+    quality: "4K UHD",
+    genres: ["Animasi", "Fantasi", "Drama", "Petualangan"],
+    banner: "https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Suzume, seorang gadis SMA 17 tahun di Kyushu, bertemu dengan Souta, pemuda misterius yang berkelana menutup pintu-pintu rahasia reruntuhan di seantero Jepang yang menjadi sumber bencana alam dahsyat.",
+    cast: ["Nanoka Hara", "Hokuto Matsumura", "Eri Fukatsu"],
+    studio: "CoMix Wave Films",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    episodes: [
+      { ep: 1, title: "Full Movie", duration: "122m", thumbnail: "https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "kdrama-queen-tears",
+    tmdbId: 206586,
+    mediaType: "tv",
+    title: "Queen of Tears",
+    originalTitle: "눈물의 여왕: 포춘",
+    type: "series",
+    badge: "K-DRAMA",
+    isTrending: true,
+    rating: 9.7,
+    year: 2025,
+    duration: "16 Ep",
+    ageRating: "15+",
+    quality: "1080p FHD",
+    genres: ["Romansa", "Drama", "Komedi"],
+    banner: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Kisah cinta penuh liku dan intrik antara ratu konglomerat department store yang dingin dengan direktur hukum perusahaannya yang berasal dari desa pedesaan saat krisis tak terduga mengancam tahta mereka.",
+    cast: ["Kim Soo-hyun", "Kim Ji-won", "Park Sung-hoon"],
+    studio: "Studio Dragon",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+    episodes: [
+      { ep: 1, title: "Pernikahan Abad Ini", duration: "72m", thumbnail: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=400&q=80" },
+      { ep: 2, title: "Rahasia di Yongduri", duration: "75m", thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=400&q=80" },
+      { ep: 3, title: "Tanda-tanda Detak Jantung", duration: "74m", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "solo-leveling-arise",
+    tmdbId: 214997,
+    mediaType: "tv",
+    title: "Solo Leveling",
+    originalTitle: "나 혼자만 레벨업",
+    type: "anime",
+    badge: "AKSI EPIC",
+    isTrending: true,
+    rating: 9.8,
+    year: 2026,
+    duration: "12 Ep",
+    ageRating: "17+",
+    quality: "4K UHD",
+    genres: ["Aksi", "Supernatural", "Fantasi"],
+    banner: "https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Sung Jinwoo, hunter peringkat terlemah di dunia, terbangun di rumah sakit setelah tragedi dungeon ganda dan menerima jendela quest misterius seperti sistem game yang memungkinkannya naik level tanpa batas.",
+    cast: ["Taito Ban", "Genta Nakamura", "Reina Ueda"],
+    studio: "A-1 Pictures",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    episodes: [
+      { ep: 1, title: "Aku Bangkit", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=400&q=80" },
+      { ep: 2, title: "Quest Harian Bertahan Hidup", duration: "24m", thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "arcane-legends",
+    tmdbId: 94605,
+    mediaType: "tv",
+    title: "Arcane: League of Legends",
+    originalTitle: "Arcane: League of Legends",
+    type: "series",
+    badge: "AWARD WINNER",
+    isTrending: false,
+    rating: 9.9,
+    year: 2025,
+    duration: "9 Ep",
+    ageRating: "16+",
+    quality: "4K HDR",
+    genres: ["Animasi", "Aksi", "Sci-Fi", "Drama"],
+    banner: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Di tengah perseteruan mendidih antara kota makmur Piltover dan kota kumuh Zaun, dua saudara perempuan, Vi dan Jinx, bertarung di kubu berseberangan dalam perang yang melibatkan sihir magis dan senjata heksagonal.",
+    cast: ["Hailee Steinfeld", "Ella Purnell", "Kevin Alejandro"],
+    studio: "Fortiche Production",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    episodes: [
+      { ep: 1, title: "Selamat Datang di Taman Bermain", duration: "43m", thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" },
+      { ep: 2, title: "Beberapa Misteri Lebih Baik Terkubur", duration: "42m", thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "dune-prophecy",
+    tmdbId: 93740,
+    mediaType: "tv",
+    title: "Dune: Prophecy",
+    originalTitle: "Dune: The Sisterhood",
+    type: "series",
+    badge: "EPIC SCI-FI",
+    isTrending: false,
+    rating: 9.3,
+    year: 2026,
+    duration: "Series HD",
+    ageRating: "16+",
+    quality: "IMAX 4K",
+    genres: ["Sci-Fi", "Petualangan", "Aksi"],
+    banner: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Kisah epik ribuan tahun sebelum kelahiran Paul Atreides, mengikuti dua saudari Harkonnen dalam pertempuran politik dan rahasia kuno yang melahirkan ordo legendaris Bene Gesserit di planet pasir Arrakis.",
+    cast: ["Emily Watson", "Olivia Williams", "Jodhi May"],
+    studio: "Legendary Pictures",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    episodes: [
+      { ep: 1, title: "Full Movie", duration: "152m", thumbnail: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "spirited-away-remaster",
+    tmdbId: 129,
+    mediaType: "movie",
+    title: "Spirited Away",
+    originalTitle: "千と千尋の神隠し",
+    type: "anime",
+    badge: "LEGENDARIS",
+    isTrending: false,
+    rating: 9.7,
+    year: 2024,
+    duration: "2j 5m",
+    ageRating: "Semua Umur",
+    quality: "4K Remaster",
+    genres: ["Fantasi", "Animasi", "Petualangan"],
+    banner: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Chihiro, anak perempuan berusia 10 tahun, tanpa sengaja masuk ke dunia roh dan dewa setelah orang tuanya berubah menjadi babi. Untuk menyelamatkan keluarganya, ia harus bekerja di pemandian megah milik penyihir Yubaba.",
+    cast: ["Rumi Hiiragi", "Miyu Irino", "Mari Natsuki"],
+    studio: "Studio Ghibli",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    episodes: [
+      { ep: 1, title: "Full Movie", duration: "125m", thumbnail: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  {
+    id: "oppenheimer-quantum",
+    tmdbId: 872585,
+    mediaType: "movie",
+    title: "Oppenheimer",
+    originalTitle: "Oppenheimer",
+    type: "movie",
+    badge: "OSCAR WINNER",
+    isTrending: false,
+    rating: 9.5,
+    year: 2024,
+    duration: "3j 0m",
+    ageRating: "17+",
+    quality: "4K UHD",
+    genres: ["Biografi", "Drama", "Sejarah"],
+    banner: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",
+    poster: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    synopsis: "Perjalanan hidup fisikawan teoritis J. Robert Oppenheimer yang memimpin Proyek Manhattan di Los Alamos demi menciptakan bom atom pertama dalam sejarah umat manusia.",
+    cast: ["Cillian Murphy", "Emily Blunt", "Matt Damon", "Robert Downey Jr."],
+    studio: "Universal Pictures",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    episodes: [
+      { ep: 1, title: "Full Movie", duration: "180m", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" }
+    ]
+  }
+];
+
+const INITIAL_COMMENTS = [
+  { user: "SakuraLover99", avatar: "🌸", time: "5 menit lalu", text: "Animasi SashimiLix beneran halus banget! Efek claymorphism nya gemas parah 😍", likes: 42 },
+  { user: "KageGamer", avatar: "🎮", time: "12 menit lalu", text: "Subtitle Indonesia-nya rapi, streaming lancar tanpa ngelag sama sekali di 4K!", likes: 28 },
+  { user: "OtakuNusantara", avatar: "✨", time: "30 menit lalu", text: "Mode dark nya cozy banget di mata waktu nonton malam hari. Good job SashimiLix! 💖", likes: 85 }
+];

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Akun VIP • SashimiLix Streaming</title>
+  <meta name="description" content="Dashboard profil pengguna VIP SashimiLix, kelola akun, reset password, dan lihat riwayat perangkat aktif di Cloud Neon Database.">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  
+  <!-- Google Fonts: Fredoka & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ===================================================================
+         NAVIGATION BAR
+         =================================================================== -->
+    <header class="app-header">
+      <nav class="nav-container">
+        <!-- Brand Logo & Mascot -->
+        <a href="index.html" class="brand-logo" aria-label="SashimiLix Home">
+          <div class="logo-clay-icon">
+            <img src="assets/logo.png" alt="SashimiLix Mascot Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-name">
+            SASHIMI<span class="brand-accent">LIX</span>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">🏠 Beranda</a></li>
+          <li><a href="index.html#catalog" class="nav-link">🎬 Film</a></li>
+          <li><a href="index.html#catalog" class="nav-link">🌸 Anime</a></li>
+          <li><a href="profile.html" class="nav-link active">👤 Profil Saya</a></li>
+        </ul>
+
+        <!-- Action Controls -->
+        <div class="nav-actions">
+          <!-- Light / Dark Mode Switch -->
+          <button class="theme-switch-btn" id="theme-toggle-btn" title="Ganti Mode Terang / Gelap" aria-label="Toggle Theme">
+            <div class="theme-switch-thumb" id="theme-icon">☀️</div>
+          </button>
+
+          <!-- Audio Pop FX Toggle -->
+          <button class="clay-icon-btn clay-button" id="sound-toggle-btn" title="Efek Suara Pop" aria-label="Toggle Sound Effects">
+            🔔
+          </button>
+
+          <!-- User Avatar -->
+          <div class="user-avatar-btn" title="Profil Pengguna SashimiLix">
+            🐱
+            <span class="user-online-dot active"></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===================================================================
+         MAIN PROFILE DASHBOARD
+         =================================================================== -->
+    <main class="profile-page-main">
+
+      <!-- Breadcrumbs & Cloud Status -->
+      <div class="profile-breadcrumb-row">
+        <a href="index.html" class="profile-back-btn">
+          <span>⬅️ Kembali ke Beranda</span>
+        </a>
+        <div class="auth-db-status-pill connected" style="margin: 0;">
+          <span class="db-dot"></span>
+          <span class="db-text">🟢 Neon PostgreSQL Cloud: Terhubung</span>
+        </div>
+      </div>
+
+      <!-- HERO PROFILE BANNER CARD -->
+      <section class="profile-banner-card">
+        <div class="profile-banner-left">
+          <div class="profile-hero-avatar-wrap" id="profile-hero-avatar">
+            🐱
+            <button type="button" class="profile-hero-avatar-badge" title="Ganti Avatar / Foto" onclick="document.querySelector('[data-tab=\'overview\']').click(); document.getElementById('profile-avatar-customizer')?.scrollIntoView({behavior: 'smooth'});">
+              ✏️
+            </button>
+          </div>
+          <div class="profile-hero-info">
+            <h1 id="profile-hero-name">Memuat Profil...</h1>
+            <div style="margin-bottom: 8px;">
+              <span class="profile-badge-pill" id="profile-hero-badge">🌸 VIP Otaku</span>
+            </div>
+            <div class="profile-meta-list">
+              <span class="profile-meta-item">✉️ <span id="profile-hero-email">user@sashimilix.com</span></span>
+              <span>•</span>
+              <span class="profile-meta-item">📅 Bergabung: <span id="profile-hero-joined">16 Oktober 2026</span></span>
+              <span>•</span>
+              <span class="profile-meta-item">⚡ Database: <strong>Neon Serverless</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-banner-actions">
+          <button type="button" class="clay-button clay-button-lilac" onclick="document.querySelector('[data-tab=\'watchlist\']').click();">
+            ❤️ Watchlist Saya
+          </button>
+          <button type="button" class="clay-button clay-button-danger" id="btn-top-logout">
+            🚪 Keluar
+          </button>
+        </div>
+      </section>
+
+      <!-- NAVIGATION TABS -->
+      <nav class="profile-tabs-bar" aria-label="Menu Profil">
+        <button type="button" class="profile-tab-item active" data-tab="overview">
+          📌 Ringkasan Akun
+        </button>
+        <button type="button" class="profile-tab-item" data-tab="security">
+          🔐 Keamanan & Password
+        </button>
+        <button type="button" class="profile-tab-item" data-tab="devices">
+          💻 Perangkat Aktif
+        </button>
+        <button type="button" class="profile-tab-item" data-tab="watchlist">
+          🎬 Koleksi Watchlist
+        </button>
+        <button type="button" class="profile-tab-item" data-tab="preferences">
+          ⚙️ Preferensi Streaming
+        </button>
+      </nav>
+
+      <!-- =================================================================
+           TAB 1: RINGKASAN AKUN (OVERVIEW)
+           ================================================================= -->
+      <div class="profile-tab-panel active" id="tab-panel-overview">
+        <!-- 4 3D Stats Cards -->
+        <div class="profile-stats-quad">
+          <div class="profile-stat-box">
+            <div class="profile-stat-icon">🎬</div>
+            <div>
+              <div class="profile-stat-num" id="stat-watched-count">18</div>
+              <div class="profile-stat-lbl">Film Ditonton</div>
+            </div>
+          </div>
+
+          <div class="profile-stat-box" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'watchlist\']').click();">
+            <div class="profile-stat-icon">❤️</div>
+            <div>
+              <div class="profile-stat-num" id="stat-watchlist-count">0</div>
+              <div class="profile-stat-lbl">Koleksi Watchlist</div>
+            </div>
+          </div>
+
+          <div class="profile-stat-box">
+            <div class="profile-stat-icon">🌸</div>
+            <div>
+              <div class="profile-stat-num" id="stat-favorite-genre" style="font-size: 1.4rem;">Anime 4K</div>
+              <div class="profile-stat-lbl">Genre Favorit</div>
+            </div>
+          </div>
+
+          <div class="profile-stat-box">
+            <div class="profile-stat-icon">🏆</div>
+            <div>
+              <div class="profile-stat-num" id="stat-active-days">14 Hari</div>
+              <div class="profile-stat-lbl">Keaktifan Akun</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio & Status Section -->
+        <div class="profile-card-section">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <div class="profile-section-title">💬 Status & Bio Profil</div>
+            <button type="button" class="aux-link-btn" id="btn-edit-bio">✏️ Ubah Bio</button>
+          </div>
+
+          <div id="bio-display-box">
+            <p id="profile-bio-text" style="font-size: 1.05rem; font-style: italic; color: var(--text-primary); line-height: 1.6;">
+              "Menikmati keajaiban dunia anime dan sinema bersama SashimiLix! 🌸"
+            </p>
+          </div>
+
+          <div id="bio-edit-box" style="display: none; margin-top: 10px;">
+            <textarea id="input-bio" class="clay-textarea" rows="2" maxlength="150" placeholder="Tuliskan kata mutiara atau bio tentang seleramu..."></textarea>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+              <button type="button" class="clay-button clay-button-coral" id="btn-save-bio" style="padding: 8px 18px; font-size: 0.85rem;">
+                💾 Simpan Bio
+              </button>
+              <button type="button" class="aux-link-btn" id="btn-cancel-bio">Batal</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Customizer Section -->
+        <div class="profile-card-section" id="profile-avatar-customizer">
+          <div class="profile-section-title">🎨 Kustomisasi Karakter & Foto Profil</div>
+          <div class="profile-section-desc">Pilih karakter maskot emoji atau unggah foto asli Anda ke Neon Object Storage Cloud.</div>
+
+          <label class="clay-label">Pilih Karakter Maskot:</label>
+          <div class="avatar-picker-grid" id="profile-avatar-picker-grid"></div>
+
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1.5px dashed var(--border-subtle); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+            <div>
+              <div style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">Foto Pribadi dari Komputer / HP</div>
+              <div style="font-size: 0.82rem; color: var(--text-secondary);">Tersimpan aman di Neon Object Storage bucket "assets".</div>
+            </div>
+            <label class="clay-button clay-button-lilac" style="cursor: pointer; margin: 0; padding: 10px 18px; font-size: 0.88rem;">
+              📦 Unggah Foto Pribadi
+              <input type="file" id="profile-file-upload" accept="image/*" style="display: none;">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           TAB 2: KEAMANAN & RESET PASSWORD (SECURITY)
+           ================================================================= -->
+      <div class="profile-tab-panel" id="tab-panel-security">
+        <!-- Reset / Ganti Password Card -->
+        <div class="profile-card-section">
+          <div class="profile-section-title">🔑 Ganti / Reset Password Akun</div>
+          <div class="profile-section-desc">
+            Amankan akun SashimiLix Anda dengan password baru yang kuat. Password akan dienkripsi dengan standar <strong>SHA-256 Cosmic Salt</strong> di Neon Database.
+          </div>
+
+          <div class="clay-form-error" id="security-alert-box" style="display: none;"></div>
+
+          <form id="form-change-password" style="max-width: 580px;">
+            <div class="clay-form-group">
+              <label class="clay-label">Password Lama</label>
+              <div class="clay-input-wrap">
+                <span class="input-icon">🔒</span>
+                <input type="password" id="pwd-old" class="clay-input" placeholder="Masukkan password lama Anda" autocomplete="current-password">
+                <button type="button" class="pwd-toggle-btn" data-for="pwd-old" title="Tampilkan/Sembunyikan password">👁️</button>
+              </div>
+              <span class="clay-input-hint">Catatan: Jika Anda login via Google, Anda bisa langsung mengisi Password Baru di bawah.</span>
+            </div>
+
+            <div class="clay-form-group">
+              <label class="clay-label">Password Baru (Min. 6 Karakter)</label>
+              <div class="clay-input-wrap">
+                <span class="input-icon">✨</span>
+                <input type="password" id="pwd-new" class="clay-input" placeholder="Buat password baru yang kuat" minlength="6" required autocomplete="new-password">
+                <button type="button" class="pwd-toggle-btn" data-for="pwd-new" title="Tampilkan/Sembunyikan password">👁️</button>
+              </div>
+              <div class="pwd-strength-bar">
+                <div class="pwd-strength-fill" id="pwd-strength-indicator"></div>
+              </div>
+            </div>
+
+            <div class="clay-form-group">
+              <label class="clay-label">Ulangi Password Baru</label>
+              <div class="clay-input-wrap">
+                <span class="input-icon">🛡️</span>
+                <input type="password" id="pwd-confirm" class="clay-input" placeholder="Ulangi password baru Anda" minlength="6" required autocomplete="new-password">
+                <button type="button" class="pwd-toggle-btn" data-for="pwd-confirm" title="Tampilkan/Sembunyikan password">👁️</button>
+              </div>
+            </div>
+
+            <button type="submit" class="clay-button clay-button-coral" id="btn-submit-pwd" style="padding: 12px 24px; font-size: 0.95rem; margin-top: 10px;">
+              <span>💾 Simpan Password Baru</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Google OAuth Integration Info Card -->
+        <div class="profile-card-section">
+          <div class="profile-section-title">🌐 Status Autentikasi Google</div>
+          <div style="display: flex; align-items: center; gap: 16px; margin-top: 10px;">
+            <div style="width: 48px; height: 48px; border-radius: 16px; background: rgba(66, 133, 244, 0.12); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 48 48" width="28" height="28">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-primary); font-size: 1rem;">Login dengan Akun Google</div>
+              <div style="font-size: 0.84rem; color: var(--text-secondary);">
+                Tersambung dengan Neon Auth JWKS & Provider OAuth Google untuk akses instan tanpa perlu mengingat kata sandi.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           TAB 3: PERANGKAT AKTIF ("LOGIN PAKE DEVICE APA")
+           ================================================================= -->
+      <div class="profile-tab-panel" id="tab-panel-devices">
+        <div class="profile-card-section">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; flex-wrap: wrap;">
+            <div>
+              <div class="profile-section-title">💻 Daftar Sesi & Perangkat Aktif</div>
+              <div class="profile-section-desc" style="margin-bottom: 0;">
+                Kelola perangkat dan peramban yang saat ini sedang masuk ke akun SashimiLix Anda.
+              </div>
+            </div>
+            <button type="button" class="clay-button clay-button-danger" id="btn-logout-other-devices" style="padding: 10px 18px; font-size: 0.88rem;">
+              🚪 Keluarkan Semua Perangkat Lain
+            </button>
+          </div>
+
+          <div id="device-list-container" style="margin-top: 20px;"></div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           TAB 4: KOLEKSI WATCHLIST (WATCHLIST)
+           ================================================================= -->
+      <div class="profile-tab-panel" id="tab-panel-watchlist">
+        <div class="profile-card-section">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <div class="profile-section-title">🎬 Koleksi Watchlist Saya</div>
+              <div class="profile-section-desc" style="margin-bottom: 0;">Daftar anime dan film yang Anda simpan di Neon Cloud.</div>
+            </div>
+            <a href="index.html#catalog" class="clay-button clay-button-coral" style="text-decoration: none; padding: 8px 16px; font-size: 0.88rem;">
+              ➕ Jelajahi Katalog Baru
+            </a>
+          </div>
+
+          <div id="watchlist-empty-notice" style="display: none; padding: 40px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🍿</div>
+            <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">Koleksi Watchlist Masih Kosong</div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 18px;">
+              Klik tombol hati ❤️ pada film atau anime favorit di katalog untuk menyimpannya ke akun Anda!
+            </p>
+            <a href="index.html#catalog" class="clay-button clay-button-lilac" style="text-decoration: none; padding: 8px 20px;">
+              Buka Katalog Film
+            </a>
+          </div>
+
+          <div class="profile-watchlist-grid" id="profile-watchlist-grid"></div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           TAB 5: PREFERENSI STREAMING & PEMUTAR
+           ================================================================= -->
+      <div class="profile-tab-panel" id="tab-panel-preferences">
+        <div class="profile-card-section">
+          <div class="profile-section-title">⚙️ Preferensi Tontonan & Pemutar Video</div>
+          <div class="profile-section-desc">Atur kualitas video default, server pemutar, dan bahasa terjemahan otomatis.</div>
+
+          <div class="profile-form-grid">
+            <div class="clay-form-group">
+              <label class="clay-label">Kualitas Resolusi Default</label>
+              <select id="pref-quality" class="clay-input" style="cursor: pointer;">
+                <option value="4k">✨ 4K Ultra HD (Maksimal)</option>
+                <option value="1080p" selected>🌟 1080p Full HD (Direkomendasikan)</option>
+                <option value="720p">⚡ 720p HD (Hemat Kuota)</option>
+              </select>
+            </div>
+
+            <div class="clay-form-group">
+              <label class="clay-label">Preferensi Server Pemutar</label>
+              <select id="pref-server" class="clay-input" style="cursor: pointer;">
+                <option value="vidsrc_su" selected>🚀 Server 1: VidSrc SU (Cepat & Stabil)</option>
+                <option value="2embed">🎬 Server 2: 2Embed Player</option>
+                <option value="multiembed">💎 Server 3: MultiEmbed VIP</option>
+              </select>
+            </div>
+
+            <div class="clay-form-group">
+              <label class="clay-label">Bahasa Subtitle Bawaan</label>
+              <select id="pref-subtitle" class="clay-input" style="cursor: pointer;">
+                <option value="id" selected>🇮🇩 Bahasa Indonesia (Takarir ID)</option>
+                <option value="en">🇬🇧 English (English Subtitle)</option>
+                <option value="jp">🇯🇵 日本語 (Japanese Audio/Sub)</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="clay-button clay-button-coral" id="btn-save-prefs" style="padding: 10px 22px; font-size: 0.9rem; margin-top: 14px;">
+            <span>💾 Simpan Preferensi Tontonan</span>
+          </button>
+        </div>
+
+        <!-- Danger Zone Card -->
+        <div class="profile-card-section" style="border-color: rgba(255, 94, 126, 0.4); background: rgba(255, 94, 126, 0.04);">
+          <div class="profile-section-title" style="color: var(--primary-coral);">⚠️ Manajemen Akun & Sesi</div>
+          <div class="profile-section-desc">Tindakan ini akan mengakhiri sesi aktif Anda pada peramban ini.</div>
+          <button type="button" class="clay-button clay-button-danger" id="btn-logout-account" style="padding: 10px 24px; font-size: 0.92rem;">
+            🚪 Keluar dari Akun SashimiLix
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ===================================================================
+         FOOTER
+         =================================================================== -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <div class="footer-mascot">🐱 🌸 ✨</div>
+        <div>© 2026 SashimiLix. Hak Cipta Dilindungi. Didukung oleh Neon Serverless PostgreSQL.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/profile.js"></script>
+  <script>
+    // Theme toggle handling
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const savedTheme = localStorage.getItem('sashimilix_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeIcon) themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('sashimilix_theme', next);
+        if (themeIcon) themeIcon.textContent = next === 'dark' ? '🌙' : '☀️';
+      });
+    }
+
+    // Audio Pop toggle
+    const soundBtn = document.getElementById('sound-toggle-btn');
+    let soundEnabled = localStorage.getItem('sashimilix_sound_enabled') !== 'false';
+    if (soundBtn) {
+      soundBtn.textContent = soundEnabled ? '🔔' : '🔕';
+      soundBtn.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        localStorage.setItem('sashimilix_sound_enabled', soundEnabled);
+        soundBtn.textContent = soundEnabled ? '🔔' : '🔕';
+      });
+    }
+  </script>
+</body>
+</html>
