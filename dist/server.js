@@ -874,15 +874,16 @@ app.get("/api/auth/status", async (_req, res) => {
 // ===================================================================
 // 5. STATIC FILES SERVING & SPA FALLBACK
 // ===================================================================
-app.use(express_1.default.static(path_1.default.resolve(process.cwd())));
+const PUBLIC_DIR = path_1.default.resolve(process.cwd(), "public");
+app.use(express_1.default.static(PUBLIC_DIR));
 app.get("/", (_req, res) => {
-    res.sendFile(path_1.default.resolve(process.cwd(), "index.html"));
+    res.sendFile(path_1.default.resolve(process.cwd(), "public", "index.html"));
 });
 app.get("/watch", (_req, res) => {
-    res.sendFile(path_1.default.resolve(process.cwd(), "watch.html"));
+    res.sendFile(path_1.default.resolve(process.cwd(), "public", "watch.html"));
 });
 app.get("/profile", (_req, res) => {
-    res.sendFile(path_1.default.resolve(process.cwd(), "profile.html"));
+    res.sendFile(path_1.default.resolve(process.cwd(), "public", "profile.html"));
 });
 // Start Server
 if (require.main === module) {

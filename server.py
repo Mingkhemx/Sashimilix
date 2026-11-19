@@ -13,7 +13,7 @@ import urllib.request
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
-DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public")
 
 class SashimiHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
